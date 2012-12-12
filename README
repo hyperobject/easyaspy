@@ -1,0 +1,15 @@
+EasyAsPy -- Based on Scratch by MIT
+======
+EasyAsPy is a Python framework that allows the use of Scratch-like commands.
+It will eventually have a 'stage' area like Scratch by using Pygame.
+======
+To get started now:
+Install Python (3.x and up not yet supported)
+Download the latest version of EasyAsPy
+Place files in your user directory
+-Debian-based Linux-
+Get to the terminal window
+Type in 'cd ~/EasyAsPy'
+Type in 'python'
+Type in 'from easyaspy import *'
+You're done!
