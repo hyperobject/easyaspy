@@ -429,3 +429,8 @@ Small Device Styles
   }
 
 }
+@media screen and (max-device-width: 500px){
+    .inner{
+    font-size: 20px;
+    }
+}
