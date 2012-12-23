@@ -21,6 +21,7 @@ class Script():
         self.loops = []
         self.myBlocks = []
         self.pos = 0
+		self.running = False
         self.owner = 0
         k = 0
         for i in Sprites:
@@ -30,8 +31,8 @@ class Script():
                 k += 1
     def run(self):
         if self.pos == -1:
-            if self.loops[len(self.loops) - 1][2] == len(self.myBlocks):
-                self.pos = self.loops[len(self.loops) - 1][1]
+            if self.loops[0][2] == len(self.myBlocks):
+                self.pos = self.loops[0][1]
             else:
                 if self.myBlocks[0].run() == True:
                     self.pos == 0
@@ -60,7 +61,7 @@ class Block():
             if (Scripts[self.owner].pos + 1) > len(Scripts[self.owner].myBlocks):
                 Scripts[self.owner].pos = -1
     def run(self):
-        global Sprites, answer
+        global Sprites, Scripts, answer
         for i in range(len(self.inputs)):
             if type(self.inputs[i]) == type(Sprites[0]):
                 self.inputs[i] = self.inputs[i].run()
@@ -84,5 +85,11 @@ class Block():
         if self.block == 5: #length of
             string = str(self.inputs[0])
             return len(string)
+        if self.block == 6: #broadcast
+            for i in range(len(Scripts)):
+			    if Scripts[i].myBlocks[0].block == 7 and Scripts[i].myBlocks[0].inputs[0] == self.inputs[0] and Scripts[i].running == False:
+				    Scripts[i].pos = 1
+					Scripts[i].running = True
+		# block type 7 is a hat, and therefore, will not be defined. Only it's trigger will; it's block type 6.
 if __name__ == "__main__":
     print "Block definitions and paralell scripting for EasyAsPy."
